@@ -1,0 +1,17 @@
+﻿node_modules/
+dist/
+build/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+.env.local
+coverage/
+logs/
+.DS_Store
+frontend/check_*.cjs
+frontend/create_app.py
+strip_*.py
+fix_*.py
+check_*.py

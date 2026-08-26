@@ -1,0 +1,10 @@
+{
+  "project": "3D ULPIN",
+  "location": "Chennai, TN",
+  "center": [
+    80.20402923,
+    13.08248194
+  ],
+  "primary_ulpin": "DEMO-TN-CHN-000001",
+  "crs": "EPSG:4326"
+}

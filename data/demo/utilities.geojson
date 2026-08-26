@@ -1,0 +1,51 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "UTIL-WATER-001",
+        "type": "WATER",
+        "z_min": -2.5,
+        "z_max": -1.5,
+        "data_status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.2080790752967,
+            13.0868950626255
+          ],
+          [
+            80.2087698577736,
+            13.0868950626255
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "UTIL-SEWER-001",
+        "type": "SEWER",
+        "z_min": -2.0,
+        "z_max": -1.0,
+        "data_status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20842446653515,
+            13.0865101546347
+          ],
+          [
+            80.20842446653515,
+            13.087279970616299
+          ]
+        ]
+      }
+    }
+  ]
+}

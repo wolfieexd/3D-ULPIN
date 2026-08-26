@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "conflict_id": "CONF-001",
+        "utility_1": "UTIL-WATER-001",
+        "utility_2": "UTIL-SEWER-001",
+        "z_overlap_min": -2.0,
+        "z_overlap_max": -1.5,
+        "description": "WATER <-> SEWER SPATIAL OVERLAP",
+        "data_status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.20842446653515,
+          13.0868950626255
+        ]
+      }
+    }
+  ]
+}
