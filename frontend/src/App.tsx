@@ -225,9 +225,9 @@ export default function App() {
       viewer.scene.globe.depthTestAgainstTerrain = true;
       viewer.scene.highDynamicRange = false; 
       viewer.scene.globe.showWaterEffect = false;
-      viewer.scene.skyAtmosphere.show = false; 
-
-      setTimeout(() => {
+      viewer.scene.skyAtmosphere.show = false;
+      if (viewer.scene.skyBox) viewer.scene.skyBox.show = false;
+setTimeout(() => {
         const primaryBld = buildings.features?.find((f: any) => f.properties.is_primary);
         if (primaryBld) {
           flyToDemoProperty(primaryBld, 0, -45, 12.0); 
