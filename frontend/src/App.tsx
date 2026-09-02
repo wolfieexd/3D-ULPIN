@@ -284,17 +284,17 @@ export default function App() {
 
         const [pRes, bRes, fRes, uRes, utilRes, cRes] = await Promise.all([
 
-          axios.get(`${API_URL}/api/parcels`),
+          axios.get(`${API_URL}/api/parcels?t=${new Date().getTime()}`),
 
-          axios.get(`${API_URL}/api/buildings`),
+          axios.get(`${API_URL}/api/buildings?t=${new Date().getTime()}`),
 
-          axios.get(`${API_URL}/api/floors`),
+          axios.get(`${API_URL}/api/floors?t=${new Date().getTime()}`),
 
-          axios.get(`${API_URL}/api/units`),
+          axios.get(`${API_URL}/api/units?t=${new Date().getTime()}`),
 
-          axios.get(`${API_URL}/api/utilities`),
+          axios.get(`${API_URL}/api/utilities?t=${new Date().getTime()}`),
 
-          axios.get(`${API_URL}/api/conflicts`)
+          axios.get(`${API_URL}/api/conflicts?t=${new Date().getTime()}`)
 
         ]);
 
