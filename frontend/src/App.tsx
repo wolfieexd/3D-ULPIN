@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { Viewer, Entity, PolygonGraphics, PolylineGraphics, LabelGraphics, Camera, ImageryLayer, EllipsoidGraphics } from "resium";
 
-import { Cartesian3, Color, Math as CesiumMath, BoundingSphere, HeadingPitchRange, UrlTemplateImageryProvider, Cartesian2, GlobeTranslucency } from "cesium";
+import { Cartesian3, Color, Math as CesiumMath, BoundingSphere, HeadingPitchRange, UrlTemplateImageryProvider, Cartesian2, GlobeTranslucency, PolylineGlowMaterialProperty, PolylineDashMaterialProperty } from "cesium";
 
 import { Search, Layers, Play, Database, AlertTriangle, EyeOff, Navigation, ChevronRight } from "lucide-react";
 
