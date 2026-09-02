@@ -274,19 +274,33 @@ export default function App() {
 
 
   
+  
   useEffect(() => {
     if (viewerRef.current && viewerRef.current.cesiumElement) {
       if (showUnderground) {
-        viewerRef.current.cesiumElement.scene.camera.flyToBoundingSphere(
-          new BoundingSphere(Cartesian3.fromDegrees(80.205000, 13.085000, -2), 100),
-          {
-            offset: new HeadingPitchRange(CesiumMath.toRadians(30), CesiumMath.toRadians(-20), 200),
-            duration: 1.5
-          }
-        );
+        // If nothing is selected, default to B001
+        if (!selectedBuildingId) {
+            setSelectedBuildingId("B001");
+        }
+        setTimeout(() => {
+            const targetId = selectedBuildingId || "B001";
+            const b = buildings.features?.find((f: any) => f.properties.building_id === targetId);
+            if (b) {
+                const bLon = b.geometry.coordinates[0][0][0];
+                const bLat = b.geometry.coordinates[0][0][1];
+                viewerRef.current.cesiumElement.scene.camera.flyToBoundingSphere(
+                  new BoundingSphere(Cartesian3.fromDegrees(bLon, bLat, -2), 50),
+                  {
+                    offset: new HeadingPitchRange(CesiumMath.toRadians(45), CesiumMath.toRadians(-20), 100),
+                    duration: 1.5
+                  }
+                );
+            }
+        }, 100);
       }
     }
   }, [showUnderground]);
+
 useEffect(() => {
 
     // @ts-ignore
@@ -513,6 +527,25 @@ setTimeout(() => {
   }, [showUnderground, demoStep]);
 
 
+
+  
+  // Fly to selected building in underground mode when building changes
+  useEffect(() => {
+    if (viewerRef.current && viewerRef.current.cesiumElement && showUnderground && selectedBuildingId) {
+      const b = buildings.features?.find((f: any) => f.properties.building_id === selectedBuildingId);
+      if (b) {
+        const bLon = b.geometry.coordinates[0][0][0];
+        const bLat = b.geometry.coordinates[0][0][1];
+        viewerRef.current.cesiumElement.scene.camera.flyToBoundingSphere(
+          new BoundingSphere(Cartesian3.fromDegrees(bLon, bLat, -2), 50),
+          {
+            offset: new HeadingPitchRange(CesiumMath.toRadians(45), CesiumMath.toRadians(-20), 100),
+            duration: 1.0
+          }
+        );
+      }
+    }
+  }, [selectedBuildingId, showUnderground]);
 
   const getGeomBoundingSphere = (geojsonFeature: any) => {
 
@@ -1227,14 +1260,13 @@ setTimeout(() => {
 
 
             {/* Z-Axis Visualization */}
-
-            {(exploreFloors || demoStep >= 11 || showUnderground) && primaryBuilding && (
+            {(exploreFloors || demoStep >= 11 || showUnderground) && (selBuilding || primaryBuilding) && (
 
                (() => {
 
-                  const bLon = primaryBuilding.geometry.coordinates[0][0][0];
-
-                  const bLat = primaryBuilding.geometry.coordinates[0][0][1];
+                  const targetB = selBuilding || primaryBuilding;
+                    const bLon = targetB.geometry.coordinates[0][0][0];
+                    const bLat = targetB.geometry.coordinates[0][0][1];
 
                   const axisLon = bLon - 0.00015;
 
@@ -1545,12 +1577,13 @@ setTimeout(() => {
 
                 const isSewer = props.utility_type === 'SEWER';
                 const isMain = props.utility_class === 'MAIN';
+                const isSelectedBldgService = props.connected_building === selectedBuildingId;
                 
                 const z1 = isMain ? (props.depth_max + props.depth_min)/2 : (isSewer ? -1.0 : -1.5);
                 const z2 = isMain ? (props.depth_max + props.depth_min)/2 : (isSewer ? -2.0 : -2.5);
                 
                 let material: any = isSewer ? Color.ORANGERED : Color.CYAN;
-                let width = isMain ? 10 : 5;
+                let width = isMain ? 10 : 3;
                 
                 const isTraced = traceRoute !== "NONE" && (
                     (traceRoute === "WATER" && !isSewer) || 
@@ -1565,7 +1598,21 @@ setTimeout(() => {
                     });
                 }
                 
-                if (isTraced) {
+                // Emphasize the selected building's services
+                if (!isMain && selectedBuildingId) {
+                    if (isSelectedBldgService) {
+                        width = 5;
+                        material = new PolylineGlowMaterialProperty({
+                            glowPower: 0.5,
+                            taperPower: 1.0,
+                            color: isSewer ? Color.YELLOW : Color.CYAN
+                        });
+                    } else {
+                        material = Color.GRAY.withAlpha(0.1);
+                    }
+                }
+                
+                if (isTraced && isSelectedBldgService) {
                     material = new PolylineDashMaterialProperty({
                         color: Color.YELLOW,
                         gapColor: Color.TRANSPARENT,
@@ -1573,8 +1620,8 @@ setTimeout(() => {
                         dashPattern: 255.0
                     });
                     width += 4;
-                } else if (traceRoute !== "NONE") {
-                    material = Color.GRAY.withAlpha(0.1);
+                } else if (traceRoute !== "NONE" && !isMain) {
+                    material = Color.GRAY.withAlpha(0.05);
                 }
                 
                 return (
@@ -1591,7 +1638,7 @@ setTimeout(() => {
                             width={width}
                             material={material}
                         />
-                        {!isMain && (
+                        {(!isMain && (isSelectedBldgService || !selectedBuildingId)) && (
                             <Entity position={Cartesian3.fromDegrees(coords[1][0], coords[1][1], z2)}>
                                 <EllipsoidGraphics radii={new Cartesian3(0.5, 0.5, 0.5)} material={Color.YELLOW} />
                             </Entity>
@@ -1603,6 +1650,8 @@ setTimeout(() => {
             {/* 3D Spatial Conflicts */}
             {conflicts && conflicts.features && conflicts.features.map((c: any, i: number) => {
                 if (!showUnderground && demoStep < 14 && elevationCutoff >= 0) return null;
+                // Only show conflict if we are looking at B001 or no building is selected
+                if (selectedBuildingId && selectedBuildingId !== "B001") return null;
                 const p = c.geometry.coordinates;
                 return (
                     <React.Fragment key={`conflict-${i}`}>
@@ -1610,12 +1659,12 @@ setTimeout(() => {
                             <EllipsoidGraphics radii={new Cartesian3(2.5, 2.5, 2.5)} material={Color.RED.withAlpha(0.9)} outline={true} outlineColor={Color.ORANGERED} />
                         </Entity>
                         <Entity position={Cartesian3.fromDegrees(p[0], p[1], -1.75)}>
-                            <LabelGraphics text={"⚠ 3D SPATIAL CONFLICT\nWATER x SEWER\nZ OVERLAP: -2.0m to -1.5m"} font="bold 12px monospace" fillColor={Color.WHITE} showBackground={true} backgroundColor={Color.RED.withAlpha(0.9)} pixelOffset={new Cartesian2(100, -80)} disableDepthTestDistance={Number.POSITIVE_INFINITY} />
+                            <LabelGraphics text={"⚠ 3D SPATIAL CONFLICT\nWATER x SEWER\nZ OVERLAP: -2.0m to -1.5m"} font="bold 12px monospace" fillColor={Color.WHITE} showBackground={true} backgroundColor={Color.RED.withAlpha(0.9)} pixelOffset={new Cartesian2(120, -100)} disableDepthTestDistance={Number.POSITIVE_INFINITY} />
                         </Entity>
                     </React.Fragment>
                 );
             })}
-          
+
         </Viewer>
 
         </main>
