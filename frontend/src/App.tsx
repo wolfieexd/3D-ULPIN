@@ -264,6 +264,8 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [demoStep, setDemoStep] = useState(0);
+  const [traceRoute, setTraceRoute] = useState<string>("NONE");
+  const [selectedFeature, setSelectedFeature] = useState<any>(null);
 
 
 
@@ -271,7 +273,21 @@ export default function App() {
 
 
 
+  
   useEffect(() => {
+    if (viewerRef.current && viewerRef.current.cesiumElement) {
+      if (showUnderground) {
+        viewerRef.current.cesiumElement.scene.camera.flyToBoundingSphere(
+          new BoundingSphere(Cartesian3.fromDegrees(80.205000, 13.085000, -2), 100),
+          {
+            offset: new HeadingPitchRange(CesiumMath.toRadians(30), CesiumMath.toRadians(-20), 200),
+            duration: 1.5
+          }
+        );
+      }
+    }
+  }, [showUnderground]);
+useEffect(() => {
 
     // @ts-ignore
 
@@ -927,6 +943,43 @@ setTimeout(() => {
 
 
         <main className="flex-1 relative bg-slate-800">
+      
+      {/* Underground Legend */}
+      {showUnderground && (
+        <div className="absolute bottom-6 left-6 z-30 bg-slate-900/95 backdrop-blur border border-slate-700 shadow-2xl p-5 rounded-xl text-white min-w-[260px]">
+          <h3 className="font-bold text-sm tracking-wider text-slate-400 mb-3 uppercase">Underground Network</h3>
+          <div className="space-y-3 text-sm">
+            <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.8)]"></div><span>Building Connection</span></div>
+            <div className="flex items-center gap-3"><div className="w-8 h-1.5 bg-cyan-500 rounded"></div><span>Water Main</span></div>
+            <div className="flex items-center gap-3"><div className="w-8 h-0.5 bg-cyan-400 rounded"></div><span>Water Service</span></div>
+            <div className="flex items-center gap-3"><div className="w-8 h-1.5 bg-orange-600 rounded"></div><span>Sewer Main</span></div>
+            <div className="flex items-center gap-3"><div className="w-8 h-0.5 bg-orange-400 rounded"></div><span>Sewer Service</span></div>
+            <div className="flex items-center gap-3"><div className="w-3 h-3 rounded-full bg-red-600"></div><span>Spatial Conflict</span></div>
+          </div>
+          <div className="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-500 font-mono">
+            DATA<br/>DEMO / SYNTHETIC
+          </div>
+        </div>
+      )}
+{/* Utility Inspector */}
+      {selectedFeature && selectedFeature.properties && selectedFeature.properties.utility_id && (
+        <div className="absolute right-[400px] top-24 z-30 bg-slate-900/95 backdrop-blur border border-slate-700 shadow-2xl rounded-xl w-80 text-white flex flex-col max-h-[80vh] overflow-hidden">
+          <div className="bg-slate-800/80 px-5 py-4 border-b border-slate-700 flex justify-between items-center">
+            <h2 className="font-bold text-lg flex items-center gap-2">
+              <Database size={20} className={selectedFeature.properties.utility_type === 'SEWER' ? 'text-orange-400' : 'text-blue-400'} />
+              {selectedFeature.properties.utility_type} {selectedFeature.properties.utility_class}
+            </h2>
+            <button onClick={() => setSelectedFeature(null)} className="text-slate-400 hover:text-white p-1">X</button>
+          </div>
+          <div className="p-5 flex-1 overflow-y-auto space-y-4 text-sm">
+             <div><div className="text-slate-400 mb-1">ID</div><div className="font-medium font-mono text-slate-200">{selectedFeature.properties.utility_id}</div></div>
+             <div><div className="text-slate-400 mb-1">Depth</div><div className="font-medium text-slate-200">{selectedFeature.properties.depth_min}m to {selectedFeature.properties.depth_max}m</div></div>
+             {selectedFeature.properties.connected_building && <div><div className="text-slate-400 mb-1">Connected Building</div><div className="font-medium text-slate-200">{selectedFeature.properties.connected_building}</div></div>}
+             <div className="pt-4 border-t border-slate-800 text-xs text-slate-500 font-mono">DATA<br/>DEMO / SYNTHETIC</div>
+          </div>
+        </div>
+      )}
+
 
           
 
@@ -1482,91 +1535,88 @@ setTimeout(() => {
 
 
 
-            {(showUnderground || demoStep >= 14) && utilities.features?.map((f: any, i: number) => {
+            {/* 3D Utilities Data */}
+            {utilities && utilities.features && utilities.features.map((u: any, i: number) => {
+                if (!showUnderground && demoStep < 14 && elevationCutoff >= 0) return null;
+                
+                const props = u.properties;
+                const coords = u.geometry.coordinates;
+                if (!coords || coords.length < 2) return null;
 
-              if (!f._cachedPositions) return null;
-
-              let typeColor = f.properties.type === 'WATER' ? Color.DODGERBLUE : (f.properties.type === 'SEWER' ? Color.BROWN : Color.GOLD);
-
-              if (demoStep === 14) typeColor = typeColor.withAlpha(0.25);
-
-
-
-              const coords = f.geometry.coordinates.flat();
-
-              const midLon = (coords[0] + coords[2]) / 2;
-
-              const midLat = (coords[1] + coords[3]) / 2;
-
-
-
-            
-  return (
-
-                  <React.Fragment key={`util-${i}`}>
-
-                      <Entity>
-
-                        <PolylineGraphics positions={f._cachedPositions} width={12} material={typeColor} />
-
-                      </Entity>
-
-                      <Entity position={Cartesian3.fromDegrees(midLon, midLat, f.properties.z_max + 0.5)}>
-
-                         <LabelGraphics text={`${f.properties.type}
-
-${f.properties.z_min.toFixed(1)}m`} 
-
-                                        font="bold 10px monospace" fillColor={Color.WHITE} 
-
-                                        showBackground={true} backgroundColor={typeColor.withAlpha(0.9)} />
-
-                      </Entity>
-
-                  </React.Fragment>
-
-              );
-
+                const isSewer = props.utility_type === 'SEWER';
+                const isMain = props.utility_class === 'MAIN';
+                
+                const z1 = isMain ? (props.depth_max + props.depth_min)/2 : (isSewer ? -1.0 : -1.5);
+                const z2 = isMain ? (props.depth_max + props.depth_min)/2 : (isSewer ? -2.0 : -2.5);
+                
+                let material: any = isSewer ? Color.ORANGERED : Color.CYAN;
+                let width = isMain ? 10 : 5;
+                
+                const isTraced = traceRoute !== "NONE" && (
+                    (traceRoute === "WATER" && !isSewer) || 
+                    (traceRoute === "SEWER" && isSewer)
+                );
+                
+                if (isMain) {
+                    material = new PolylineGlowMaterialProperty({
+                        glowPower: 0.3,
+                        taperPower: 1.0,
+                        color: isSewer ? Color.ORANGERED : Color.CYAN
+                    });
+                }
+                
+                if (isTraced) {
+                    material = new PolylineDashMaterialProperty({
+                        color: Color.YELLOW,
+                        gapColor: Color.TRANSPARENT,
+                        dashLength: 16.0,
+                        dashPattern: 255.0
+                    });
+                    width += 4;
+                } else if (traceRoute !== "NONE") {
+                    material = Color.GRAY.withAlpha(0.1);
+                }
+                
+                return (
+                    <Entity 
+                        key={`util-${i}`}
+                        onClick={() => setSelectedFeature(u)}
+                        description={props.utility_id}
+                    >
+                        <PolylineGraphics
+                            positions={Cartesian3.fromDegreesArrayHeights([
+                                coords[0][0], coords[0][1], z1,
+                                coords[1][0], coords[1][1], z2
+                            ])}
+                            width={width}
+                            material={material}
+                        />
+                        {!isMain && (
+                            <Entity position={Cartesian3.fromDegrees(coords[1][0], coords[1][1], z2)}>
+                                <EllipsoidGraphics radii={new Cartesian3(0.5, 0.5, 0.5)} material={Color.YELLOW} />
+                            </Entity>
+                        )}
+                    </Entity>
+                );
             })}
 
-
-
-            {/* CONFLICT HIGHLIGHT */}
-
-            {showConflicts && conflicts.features?.map((f: any, i: number) => {
-
-               const p = f.geometry.coordinates;
-
-               if (!p || p.length < 2) return null;
-
-             
-  return (
-
-                  <React.Fragment key={`conflict-${i}`}>
-
-                      <Entity position={Cartesian3.fromDegrees(p[0], p[1], -1.75)}>
-
-                          <EllipsoidGraphics radii={new Cartesian3(2.5, 2.5, 2.5)} material={Color.RED.withAlpha(0.7)} outline={true} outlineColor={Color.RED} />
-
-                      </Entity>
-
-                      <Entity position={Cartesian3.fromDegrees(p[0], p[1], -0.2)}>
-
-                          <LabelGraphics text={`3D SPATIAL CONFLICT
-
-WATER ↔ SEWER
-
-Z OVERLAP: -2.0m to -1.5m`} font="bold 12px monospace" fillColor={Color.WHITE} showBackground={true} backgroundColor={Color.RED.withAlpha(0.9)} pixelOffset={new Cartesian2(0, -40)} disableDepthTestDistance={Number.POSITIVE_INFINITY} />
-
-                      </Entity>
-
-                  </React.Fragment>
-
-               );
-
+            {/* 3D Spatial Conflicts */}
+            {conflicts && conflicts.features && conflicts.features.map((c: any, i: number) => {
+                if (!showUnderground && demoStep < 14 && elevationCutoff >= 0) return null;
+                const p = c.geometry.coordinates;
+                return (
+                    <React.Fragment key={`conflict-${i}`}>
+                        <Entity position={Cartesian3.fromDegrees(p[0], p[1], -1.75)}>
+                            <EllipsoidGraphics radii={new Cartesian3(2.5, 2.5, 2.5)} material={Color.RED.withAlpha(0.9)} outline={true} outlineColor={Color.ORANGERED} />
+                        </Entity>
+                        <Entity position={Cartesian3.fromDegrees(p[0], p[1], -1.75)}>
+                            <LabelGraphics text={"⚠ 3D SPATIAL CONFLICT\nWATER x SEWER\nZ OVERLAP: -2.0m to -1.5m"} font="bold 12px monospace" fillColor={Color.WHITE} showBackground={true} backgroundColor={Color.RED.withAlpha(0.9)} pixelOffset={new Cartesian2(100, -80)} disableDepthTestDistance={Number.POSITIVE_INFINITY} />
+                        </Entity>
+                    </React.Fragment>
+                );
             })}
-
-          </Viewer>
+          
+        </Viewer>
 
         </main>
 
@@ -1665,6 +1715,21 @@ Z OVERLAP: -2.0m to -1.5m`} font="bold 12px monospace" fillColor={Color.WHITE} s
                       <Navigation size={14} /> <span>Explore Floors</span>
 
                   </button>
+                  {/* Connected Utilities */}
+                  {selectedBuildingId && (
+                      <div className="mt-6 pt-6 border-t border-slate-200">
+                          <h3 className="font-bold text-slate-800 mb-3 text-xs uppercase tracking-wider">Connected Infrastructure</h3>
+                          <div className="flex gap-3">
+                              <button onClick={() => setTraceRoute(traceRoute === 'WATER' ? 'NONE' : 'WATER')} className={`flex-1 py-2 px-3 rounded text-xs font-bold border transition-colors ${traceRoute === 'WATER' ? 'bg-cyan-600 border-cyan-500 text-white' : 'bg-slate-100 border-slate-200 text-cyan-700 hover:bg-slate-200'}`}>
+                                  TRACE WATER
+                              </button>
+                              <button onClick={() => setTraceRoute(traceRoute === 'SEWER' ? 'NONE' : 'SEWER')} className={`flex-1 py-2 px-3 rounded text-xs font-bold border transition-colors ${traceRoute === 'SEWER' ? 'bg-orange-600 border-orange-500 text-white' : 'bg-slate-100 border-slate-200 text-orange-700 hover:bg-slate-200'}`}>
+                                  TRACE SEWER
+                              </button>
+                          </div>
+                      </div>
+                  )}
+
 
                 </div>
 
@@ -1907,15 +1972,4 @@ Z OVERLAP: -2.0m to -1.5m`} font="bold 12px monospace" fillColor={Color.WHITE} s
   );
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
