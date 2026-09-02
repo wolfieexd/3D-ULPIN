@@ -199,7 +199,7 @@ class ErrorBoundary extends React.Component<any, any> {
 
             <AlertTriangle className="text-red-500 mb-4" size={32} />
 
-            <h2 className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-2">Unit View Error</h2>
+            <h2 className="text-xs font-bold text-slate-800 uppercase tracking-widest mb-2">Unit View Error</h2>
 
             <p className="text-xs mb-6">Unable to display this unit.</p>
 
@@ -826,7 +826,7 @@ setTimeout(() => {
 
           <div>
 
-            <div className="font-bold tracking-widest text-sm uppercase">3D ULPIN</div>
+            <div className="font-bold tracking-widest text-xs uppercase">3D ULPIN</div>
 
             <div className="text-[10px] text-slate-400 font-mono">Chennai, Tamil Nadu</div>
 
@@ -872,7 +872,7 @@ setTimeout(() => {
 
         <aside className="w-64 bg-slate-50 border-r border-slate-200 flex flex-col z-10 shadow-lg shrink-0">
 
-          <div className="p-4 space-y-5 text-sm flex-1 overflow-y-auto">
+          <div className="p-4 space-y-5 text-xs flex-1 overflow-y-auto">
 
             <div className="space-y-3">
 
@@ -988,9 +988,9 @@ setTimeout(() => {
       
                   {/* Underground Legend */}
       {showUnderground && (
-        <div className="absolute bottom-6 left-6 z-30 bg-slate-900/95 backdrop-blur border border-slate-700 shadow-2xl p-5 rounded-xl text-white min-w-[260px]">
-          <h3 className="font-bold text-sm tracking-wider text-slate-400 mb-3 uppercase">Underground Network</h3>
-          <div className="space-y-3 text-sm">
+        <div className="absolute bottom-6 left-6 z-30 bg-slate-900/95 backdrop-blur border border-slate-700 shadow-2xl p-3 rounded-xl text-white min-w-[260px]">
+          <h3 className="font-bold text-xs tracking-wider text-slate-400 mb-3 uppercase">Underground Network</h3>
+          <div className="space-y-3 text-xs">
             <div className="flex items-center gap-3"><div className="w-3 h-3 rounded-full shadow-[0_0_8px_rgba(255,214,10,0.8)]" style={{backgroundColor: UTIL_COLORS.NODE}}></div><span>Building Connection</span></div>
             <div className="flex items-center gap-3"><div className="w-8 h-1.5 rounded shadow-[0_0_8px_rgba(0,217,255,0.8)]" style={{backgroundColor: UTIL_COLORS.WATER_MAIN}}></div><span>Water Main</span></div>
             <div className="flex items-center gap-3"><div className="w-8 h-0.5 rounded" style={{backgroundColor: UTIL_COLORS.WATER_SVC}}></div><span>Water Service</span></div>
@@ -1015,7 +1015,7 @@ setTimeout(() => {
             </h2>
             <button onClick={() => setSelectedFeature(null)} className="text-slate-400 hover:text-white p-1">X</button>
           </div>
-          <div className="p-5 flex-1 overflow-y-auto space-y-4 text-sm">
+          <div className="p-3 flex-1 overflow-y-auto space-y-4 text-xs">
              <div><div className="text-slate-400 mb-1">UTILITY ID</div><div className="font-medium font-mono text-slate-200">{selectedFeature.properties.utility_id}</div></div>
              <div><div className="text-slate-400 mb-1">TYPE</div><div className="font-medium text-slate-200">{selectedFeature.properties.utility_type} {selectedFeature.properties.utility_class}</div></div>
              {selectedFeature.properties.connected_building && <div><div className="text-slate-400 mb-1">CONNECTED BUILDING</div><div className="font-medium text-slate-200">{selectedFeature.properties.connected_building}</div></div>}
@@ -1215,7 +1215,7 @@ setTimeout(() => {
 
                                           text={mark.label} 
 
-                                          font="bold 10px monospace" 
+                                          font="bold 9px monospace" 
 
                                           fillColor={mark.color} 
 
@@ -1225,7 +1225,7 @@ setTimeout(() => {
 
                                           horizontalOrigin={2} // RIGHT
 
-                                          pixelOffset={new Cartesian2(mark.offset, 0)}
+                                          pixelOffset={new Cartesian2(mark.offset-15, 0)}
 
                                           disableDepthTestDistance={Number.POSITIVE_INFINITY}
 
@@ -1233,7 +1233,20 @@ setTimeout(() => {
 
                                   </Entity>
 
-                              </React.Fragment>
+                              
+                {/* Utility Depth Card */}
+                <Entity position={Cartesian3.fromDegrees(axisLon - 0.00002, axisLat, -2.0)}>
+                    <LabelGraphics
+                        text={"UTILITY DEPTH\nSEWER -2.0m → -1.0m\nWATER -2.5m → -1.5m"}
+                        font="bold 9px monospace"
+                        fillColor={Color.WHITE}
+                        showBackground={true}
+                        backgroundColor={Color.BLACK.withAlpha(0.6)}
+                        pixelOffset={new Cartesian2(-80, 20)}
+                        disableDepthTestDistance={Number.POSITIVE_INFINITY}
+                    />
+                </Entity>
+</React.Fragment>
 
                           ))}
 
@@ -1569,8 +1582,9 @@ setTimeout(() => {
                         <Entity position={Cartesian3.fromDegrees(p[0], p[1], -1.75)}>
                             <EllipsoidGraphics radii={new Cartesian3(2.5, 2.5, 2.5)} material={Color.RED.withAlpha(0.9)} outline={true} outlineColor={Color.ORANGERED} />
                         </Entity>
+                        <Entity polyline={{ positions: Cartesian3.fromDegreesArray([p[0], p[1], p[0], p[1]]), width: 1, material: Color.WHITE.withAlpha(0.6) }} />
                         <Entity position={Cartesian3.fromDegrees(p[0], p[1], -1.75)}>
-                            <LabelGraphics text={"⚠ 3D SPATIAL CONFLICT\nWATER x SEWER\nZ OVERLAP: -2.0m to -1.5m"} font="bold 12px monospace" fillColor={Color.WHITE} showBackground={true} backgroundColor={Color.RED.withAlpha(0.9)} pixelOffset={new Cartesian2(120, -100)} disableDepthTestDistance={Number.POSITIVE_INFINITY} />
+                            <LabelGraphics text={"⚠ 3D SPATIAL CONFLICT\nWATER × SEWER\nOVERLAP: -2.0m → -1.5m"} font="bold 10px monospace" fillColor={Color.WHITE} showBackground={false} pixelOffset={new Cartesian2(120, -100)} disableDepthTestDistance={Number.POSITIVE_INFINITY} />
                         </Entity>
                     </React.Fragment>
                 );
@@ -1602,7 +1616,7 @@ setTimeout(() => {
 
                 
 
-                <div className="p-5 flex-1 text-sm space-y-6">
+                <div className="p-3 flex-1 text-xs space-y-6">
 
                   <div className="border border-slate-200 rounded-lg overflow-hidden">
 
@@ -1721,7 +1735,7 @@ setTimeout(() => {
 
                 
 
-                <div className="p-5 flex-1 text-sm space-y-6">
+                <div className="p-3 flex-1 text-xs space-y-6">
 
                   <div className="border border-slate-200 rounded-lg overflow-hidden">
 
@@ -1773,7 +1787,7 @@ setTimeout(() => {
 
                           {units.features?.filter((u: any) => u.properties.floor_id === selFloor.properties.floor_id).map((u: any) => (
 
-                             <button key={u.properties.unit_id} onClick={() => setSelectedUnit(u.properties.unit_id)} className="py-2 bg-white border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-slate-800 font-mono text-sm font-bold rounded shadow-sm transition">
+                             <button key={u.properties.unit_id} onClick={() => setSelectedUnit(u.properties.unit_id)} className="py-2 bg-white border border-slate-200 hover:border-blue-500 hover:bg-blue-50 text-slate-800 font-mono text-xs font-bold rounded shadow-sm transition">
 
                                  {u.properties.unit_id.split('-').pop()}
 
@@ -1815,7 +1829,7 @@ setTimeout(() => {
 
                 
 
-                <div className="p-5 flex-1 text-sm space-y-4">
+                <div className="p-3 flex-1 text-xs space-y-4">
 
                   
 
@@ -1823,7 +1837,7 @@ setTimeout(() => {
 
                       <div className="text-[10px] text-blue-300 font-mono mb-1">3D PROPERTY ID</div>
 
-                      <div className="font-mono text-sm font-bold tracking-tight break-all">{selUnit.properties.property_3d_id}</div>
+                      <div className="font-mono text-xs font-bold tracking-tight break-all">{selUnit.properties.property_3d_id}</div>
 
                   </div>
 
