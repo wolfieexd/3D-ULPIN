@@ -12,7 +12,7 @@ const TARGET_LAT = 13.085000;
 
 const osmProvider = new UrlTemplateImageryProvider({
   url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-  credit: "Â© OpenStreetMap contributors"
+  credit: "© OpenStreetMap contributors"
 });
 
 const validateCoordinate = (val: any) => {
@@ -494,7 +494,7 @@ export default function App() {
               <div className="flex justify-between items-center border-t border-slate-100 pt-4">
                 <button onClick={() => runDemoStep(demoStep - 1)} disabled={demoStep === 1} className="text-xs px-4 py-2 text-slate-500 hover:text-slate-800 font-semibold transition disabled:opacity-30">Previous</button>
                 <button onClick={() => setDemoStep(0)} className="text-xs px-4 py-2 text-red-500 hover:text-red-700 font-bold transition">Exit Demo</button>
-                <button onClick={() => runDemoStep(demoStep === 15 ? 0 : demoStep + 1)} className="text-xs px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-md transition">{demoStep === 15 ? 'Finish' : 'Next â†’'}</button>
+                <button onClick={() => runDemoStep(demoStep === 15 ? 0 : demoStep + 1)} className="text-xs px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-md transition">{demoStep === 15 ? 'Finish' : 'Next →'}</button>
               </div>
             </div>
           )}
@@ -515,7 +515,7 @@ export default function App() {
                <div className="grid grid-cols-2 gap-4 text-xs">
                  <div><span className="text-slate-400 block mb-1">Z-MIN</span><span className="font-mono">6.4m</span></div>
                  <div><span className="text-slate-400 block mb-1">Z-MAX</span><span className="font-mono">9.6m</span></div>
-                   <div className="col-span-2"><span className="text-slate-400 block mb-1">CALCULATED VOLUME</span><span className="font-mono text-emerald-400">240.0 mÂ³</span></div>
+                   <div className="col-span-2"><span className="text-slate-400 block mb-1">CALCULATED VOLUME</span><span className="font-mono text-emerald-400">240.0 m³</span></div>
                </div>
             </div>
           )}
@@ -788,7 +788,7 @@ ${f.properties.z_min.toFixed(1)}m`}
                       </Entity>
                       <Entity position={Cartesian3.fromDegrees(p[0], p[1], -0.2)}>
                           <LabelGraphics text={`3D SPATIAL CONFLICT
-WATER <-> SEWER
+WATER ↔ SEWER
 Z OVERLAP: -2.0m to -1.5m`} font="bold 12px monospace" fillColor={Color.WHITE} showBackground={true} backgroundColor={Color.RED.withAlpha(0.9)} pixelOffset={new Cartesian2(0, -40)} disableDepthTestDistance={Number.POSITIVE_INFINITY} />
                       </Entity>
                   </React.Fragment>
@@ -818,7 +818,7 @@ Z OVERLAP: -2.0m to -1.5m`} font="bold 12px monospace" fillColor={Color.WHITE} s
                     <div className="p-3 border-b border-slate-200">
                         <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">CADASTRAL PARCEL</h3>
                         <div className="flex justify-between items-center mb-1"><span className="text-xs text-slate-500">Parcel ID:</span><span className="text-xs font-mono font-bold">{selBuilding.properties.parcel_id}</span></div>
-                        <div className="flex justify-between items-center mb-1"><span className="text-xs text-slate-500">Parcel Area:</span><span className="text-xs font-mono">{selParcel ? selParcel.properties.area_sqm.toFixed(2) : '-'} mÂ²</span></div>
+                        <div className="flex justify-between items-center mb-1"><span className="text-xs text-slate-500">Parcel Area:</span><span className="text-xs font-mono">{selParcel ? selParcel.properties.area_sqm.toFixed(2) : '-'} m²</span></div>
                     </div>
 
                     <div className="p-3 border-b border-slate-200">
@@ -873,7 +873,7 @@ Z OVERLAP: -2.0m to -1.5m`} font="bold 12px monospace" fillColor={Color.WHITE} s
 
                     <div className="p-3 border-b border-slate-200">
                         <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Z RANGE</h3>
-                        <div className="font-mono text-lg font-bold text-slate-800">{selFloor.properties.z_min.toFixed(1)}m â€“ {selFloor.properties.z_max.toFixed(1)}m</div>
+                        <div className="font-mono text-lg font-bold text-slate-800">{selFloor.properties.z_min.toFixed(1)}m ↔ {selFloor.properties.z_max.toFixed(1)}m</div>
                     </div>
 
                     <div className="p-3 bg-slate-50">
@@ -934,8 +934,8 @@ Z OVERLAP: -2.0m to -1.5m`} font="bold 12px monospace" fillColor={Color.WHITE} s
 
                     <div className="p-3 border-b border-slate-200">
                         <h3 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">SPATIAL METRICS</h3>
-                        <div className="flex justify-between items-center mb-1"><span className="text-xs text-slate-500">Footprint Area:</span><span className="text-xs font-mono font-bold">{selUnit.properties.area_sqm?.toFixed(1) ?? '-'} mÂ²</span></div>
-                        <div className="flex justify-between items-center"><span className="text-xs text-slate-500">3D Volume:</span><span className="text-xs font-mono text-indigo-600 font-bold">{selUnit.properties.volume_m3?.toFixed(1) ?? '-'} mÂ³</span></div>
+                        <div className="flex justify-between items-center mb-1"><span className="text-xs text-slate-500">Footprint Area:</span><span className="text-xs font-mono font-bold">{selUnit.properties.area_sqm?.toFixed(1) ?? '-'} m²</span></div>
+                        <div className="flex justify-between items-center"><span className="text-xs text-slate-500">3D Volume:</span><span className="text-xs font-mono text-indigo-600 font-bold">{selUnit.properties.volume_m3?.toFixed(1) ?? '-'} m³</span></div>
                     </div>
                     
                     <div className="p-3 bg-slate-50 space-y-2">
