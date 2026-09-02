@@ -17,6 +17,7 @@
     "vite-plugin-cesium": "^1.2.23"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
     "autoprefixer": "^10.5.4",
     "axios": "^1.19.0",
     "cesium": "^1.144.0",
