@@ -375,27 +375,16 @@ export default function App() {
 
         report.util = utilRes.data.features.length;
 
-        utilRes.data.features.forEach((f: any, i: number) => {
-
-             const coords = f.geometry.coordinates.flat();
-
-             if (coords.length >= 4 && validateCoordinate(f.properties.z_max)) {
-
-                  report.utilValid++;
-
-                  f._cachedPositions = Cartesian3.fromDegreesArrayHeights([
-
-                      coords[0], coords[1], f.properties.z_max,
-
-                      coords[2], coords[3], f.properties.z_max
-
-                  ]);
-
-             } else {
-
-                 console.warn(`[Geometry Validation] Skipping Utility ${f.properties.utility_id}`);
-
-             }
+        utilRes.data.features.forEach((f: any, i: number) => {               if (f.geometry.type === 'LineString' && f.geometry.coordinates.length >= 2) {
+                   const props = f.properties;
+                   if (props.depth_min !== undefined && props.depth_max !== undefined && props.utility_id) {
+                       report.utilValid++;
+                   } else {
+                       console.warn(`[Geometry Validation] Missing depth properties on utility ${props.utility_id}`);
+                   }
+               } else {
+                   console.warn(`[Geometry Validation] Invalid LineString geometry on utility`);
+               }
 
         });
 
@@ -1918,7 +1907,6 @@ Z OVERLAP: -2.0m to -1.5m`} font="bold 12px monospace" fillColor={Color.WHITE} s
   );
 
 }
-
 
 
 
