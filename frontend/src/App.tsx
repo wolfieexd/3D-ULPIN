@@ -14,7 +14,7 @@ import "cesium/Build/Cesium/Widgets/widgets.css";
 
 
 
-const API_URL = "http://localhost:8000";
+const API_URL = "http://127.0.0.1:8000";
 
 const TARGET_LON = 80.205000;
 
@@ -1156,7 +1156,7 @@ setTimeout(() => {
                 }
                 
                 return <Entity key={`b-${i}`} onClick={() => { if(isMapped) { setSelectedBuildingId(f.properties.building_id); setExploreFloors(false); setActiveFloor(null); setSelectedUnit(null); }}}>
-                  <PolygonGraphics hierarchy={f._cachedHierarchy} extrudedHeight={extH} material={buildingColor} outline={outlineColor !== Color.TRANSPARENT} outlineColor={outlineColor} />
+                  <PolygonGraphics hierarchy={f._cachedHierarchy} height={0} extrudedHeight={extH} material={buildingColor} outline={outlineColor !== Color.TRANSPARENT} outlineColor={outlineColor} />
                 </Entity>;
 
             })}
@@ -1171,7 +1171,7 @@ setTimeout(() => {
 
                   hierarchy={primaryBuilding._cachedHierarchy} 
 
-                  material={Color.CORNFLOWERBLUE.withAlpha(0.4)} 
+                  height={0} material={Color.CORNFLOWERBLUE.withAlpha(0.4)} 
 
                   outline={true} outlineColor={Color.DODGERBLUE} />
 
