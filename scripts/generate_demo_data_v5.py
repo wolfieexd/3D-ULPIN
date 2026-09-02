@@ -53,6 +53,7 @@ try:
                         "lon": lon,
                         "lat": lat,
                         "area": float(row['area_in_meters']),
+                        "dist": dist,
                         "geometry": {
                             "type": "Polygon",
                             "coordinates": geom
@@ -62,8 +63,12 @@ except Exception as e:
     print(e)
     pass
 
-real_buildings.sort(key=lambda x: x['area'], reverse=True)
-demo_buildings_raw = real_buildings[:300]
+# FIX: Filter for reasonably sized buildings (e.g. 30 to 800 sqm) to avoid massive overlapping polygons
+filtered_buildings = [b for b in real_buildings if 30 < b['area'] < 800]
+# Sort by distance to center so we map a contiguous dense neighborhood
+filtered_buildings.sort(key=lambda x: x['dist'])
+
+demo_buildings_raw = filtered_buildings[:300]
 
 parcels = []
 buildings = []
@@ -267,4 +272,4 @@ write_geojson("units.geojson", units)
 write_geojson("utilities.geojson", utilities)
 write_geojson("conflicts.geojson", conflicts)
 
-print("Data generated successfully for 30 mapped buildings.")
+print("Data generated successfully using distance-based clustering.")
