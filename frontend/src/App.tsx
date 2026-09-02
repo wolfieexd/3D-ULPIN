@@ -1121,35 +1121,22 @@ setTimeout(() => {
 
 
           <Viewer 
-
             ref={viewerRef} 
-
             full 
-
             animation={false} 
-
             timeline={false} 
-
             baseLayerPicker={false} 
-
             infoBox={false} 
-
             selectionIndicator={false}
-
             geocoder={false} 
-
             homeButton={false}
-
             sceneModePicker={false}
-
             navigationHelpButton={false}
-
             fullscreenButton={false}
-
             imageryProvider={false} 
-
             terrainProvider={undefined}
-
+            skyBox={false}
+            skyAtmosphere={false}
           >
 
             
