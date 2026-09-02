@@ -4,134 +4,25 @@
     {
       "type": "Feature",
       "properties": {
-        "utility_id": "UTIL-WATER-MAIN",
-        "type": "WATER",
-        "z_min": -2.5,
-        "z_max": -1.5,
-        "data_status": "DEMO / SYNTHETIC"
+        "utility_id": "WATER-MAIN-001",
+        "utility_type": "WATER",
+        "utility_class": "MAIN",
+        "from_node": "NODE-W-MAIN-S",
+        "to_node": "NODE-W-MAIN-N",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            80.2042483793918,
-            13.08466666979245
+            80.20522914662604,
+            13.08340844060111
           ],
           [
-            80.20425919989441,
-            13.08484101083925
-          ],
-          [
-            80.20440817002711,
-            13.0843517328073
-          ],
-          [
-            80.2044268830671,
-            13.0846629498487
-          ],
-          [
-            80.2045533831079,
-            13.08560009986745
-          ],
-          [
-            80.20457794868724,
-            13.0846591226172
-          ],
-          [
-            80.20465818831015,
-            13.08558769618155
-          ],
-          [
-            80.2047343964093,
-            13.085366751001299
-          ],
-          [
-            80.20475529500276,
-            13.08480803055315
-          ],
-          [
-            80.20477788714051,
-            13.08466276219755
-          ],
-          [
-            80.20478978304536,
-            13.08432119982775
-          ],
-          [
-            80.20482622416515,
-            13.085579270409001
-          ],
-          [
-            80.20488990734711,
-            13.085354661985
-          ],
-          [
-            80.2049226330926,
-            13.085383549849649
-          ],
-          [
-            80.2049456503077,
-            13.0855732230723
-          ],
-          [
-            80.2049491466406,
-            13.084808440598
-          ],
-          [
-            80.2049763619739,
-            13.084631030261551
-          ],
-          [
-            80.2050849739681,
-            13.08556417185245
-          ],
-          [
-            80.205115322837,
-            13.08463667071685
-          ],
-          [
-            80.2051667330407,
-            13.0843228498148
-          ],
-          [
-            80.2051783931209,
-            13.08479290328065
-          ],
-          [
-            80.20522372795165,
-            13.08556987636235
-          ],
-          [
-            80.20529904864165,
-            13.08537815850235
-          ],
-          [
-            80.2053016791568,
-            13.0847945262184
-          ],
-          [
-            80.20531913478536,
-            13.084614926490001
-          ],
-          [
-            80.20531968303834,
-            13.0843207998096
-          ],
-          [
-            80.20539677859935,
-            13.0854053176652
-          ],
-          [
-            80.2056008681607,
-            13.085208334097501
-          ],
-          [
-            80.20564671451291,
-            13.08460497133315
-          ],
-          [
-            80.2056484830543,
-            13.084778699810101
+            80.20522914662604,
+            13.08640844060111
           ]
         ]
       }
@@ -139,134 +30,1705 @@
     {
       "type": "Feature",
       "properties": {
-        "utility_id": "UTIL-SEWER-MAIN",
-        "type": "SEWER",
-        "z_min": -2.0,
-        "z_max": -1.0,
-        "data_status": "DEMO / SYNTHETIC"
+        "utility_id": "SEWER-MAIN-001",
+        "utility_type": "SEWER",
+        "utility_class": "MAIN",
+        "from_node": "NODE-S-MAIN-S",
+        "to_node": "NODE-S-MAIN-N",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
           [
-            80.20531968303834,
-            13.0843207998096
+            80.20532914662603,
+            13.08340844060111
           ],
           [
-            80.20478978304536,
-            13.08432119982775
+            80.20532914662603,
+            13.08640844060111
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B001",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B001",
+        "connected_building": "B001",
+        "from_node": "NODE-W-MAIN-B001",
+        "to_node": "BUILDING-B001-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0849503835059
           ],
           [
-            80.2051667330407,
-            13.0843228498148
+            80.205115185996,
+            13.0849503835059
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B001",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B001",
+        "connected_building": "B001",
+        "from_node": "NODE-S-MAIN-B001",
+        "to_node": "BUILDING-B001-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0849503835059
           ],
           [
-            80.20440817002711,
-            13.0843517328073
+            80.205115185996,
+            13.0849503835059
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B002",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B002",
+        "connected_building": "B002",
+        "from_node": "NODE-W-MAIN-B002",
+        "to_node": "BUILDING-B002-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0849517487448
           ],
           [
-            80.20564671451291,
-            13.08460497133315
+            80.2049358260077,
+            13.0849517487448
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B002",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B002",
+        "connected_building": "B002",
+        "from_node": "NODE-S-MAIN-B002",
+        "to_node": "BUILDING-B002-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0849517487448
           ],
           [
-            80.20531913478536,
-            13.084614926490001
+            80.2049358260077,
+            13.0849517487448
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B003",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B003",
+        "connected_building": "B003",
+        "from_node": "NODE-W-MAIN-B003",
+        "to_node": "BUILDING-B003-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0848274237046
           ],
           [
-            80.2049763619739,
-            13.084631030261551
+            80.2051378848278,
+            13.0848274237046
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B003",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B003",
+        "connected_building": "B003",
+        "from_node": "NODE-S-MAIN-B003",
+        "to_node": "BUILDING-B003-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0848274237046
           ],
           [
-            80.205115322837,
-            13.08463667071685
+            80.2051378848278,
+            13.0848274237046
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B004",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B004",
+        "connected_building": "B004",
+        "from_node": "NODE-W-MAIN-B004",
+        "to_node": "BUILDING-B004-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.084936710169794
           ],
           [
-            80.20457794868724,
-            13.0846591226172
+            80.20522914662604,
+            13.084936710169794
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B004",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B004",
+        "connected_building": "B004",
+        "from_node": "NODE-S-MAIN-B004",
+        "to_node": "BUILDING-B004-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0848495331988
           ],
           [
-            80.20477788714051,
-            13.08466276219755
+            80.2053208211873,
+            13.0848495331988
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B005",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B005",
+        "connected_building": "B005",
+        "from_node": "NODE-W-MAIN-B005",
+        "to_node": "BUILDING-B005-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0848073759798
           ],
           [
-            80.2044268830671,
-            13.0846629498487
+            80.2049352665536,
+            13.0848073759798
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B005",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B005",
+        "connected_building": "B005",
+        "from_node": "NODE-S-MAIN-B005",
+        "to_node": "BUILDING-B005-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0848073759798
           ],
           [
-            80.2042483793918,
-            13.08466666979245
+            80.2049352665536,
+            13.0848073759798
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B006",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B006",
+        "connected_building": "B006",
+        "from_node": "NODE-W-MAIN-B006",
+        "to_node": "BUILDING-B006-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.084825682488985
           ],
           [
-            80.2056484830543,
-            13.084778699810101
+            80.20522914662604,
+            13.084825682488985
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B006",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B006",
+        "connected_building": "B006",
+        "from_node": "NODE-S-MAIN-B006",
+        "to_node": "BUILDING-B006-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0846482624207
           ],
           [
-            80.2051783931209,
-            13.08479290328065
+            80.2052582256083,
+            13.0846482624207
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B007",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B007",
+        "connected_building": "B007",
+        "from_node": "NODE-W-MAIN-B007",
+        "to_node": "BUILDING-B007-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0849379010603
           ],
           [
-            80.2053016791568,
-            13.0847945262184
+            80.2053196105992,
+            13.0849379010603
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B007",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B007",
+        "connected_building": "B007",
+        "from_node": "NODE-S-MAIN-B007",
+        "to_node": "BUILDING-B007-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.084938026590418
           ],
           [
-            80.20475529500276,
-            13.08480803055315
+            80.20532914662603,
+            13.084938026590418
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B008",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B008",
+        "connected_building": "B008",
+        "from_node": "NODE-W-MAIN-B008",
+        "to_node": "BUILDING-B008-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0848414542036
           ],
           [
-            80.2049491466406,
-            13.084808440598
+            80.2047181257548,
+            13.0848414542036
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B008",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B008",
+        "connected_building": "B008",
+        "from_node": "NODE-S-MAIN-B008",
+        "to_node": "BUILDING-B008-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0848414542036
           ],
           [
-            80.20425919989441,
-            13.08484101083925
+            80.2047181257548,
+            13.0848414542036
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B009",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B009",
+        "connected_building": "B009",
+        "from_node": "NODE-W-MAIN-B009",
+        "to_node": "BUILDING-B009-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0854206504337
           ],
           [
-            80.2056008681607,
-            13.085208334097501
+            80.2050608113999,
+            13.0854206504337
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B009",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B009",
+        "connected_building": "B009",
+        "from_node": "NODE-S-MAIN-B009",
+        "to_node": "BUILDING-B009-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0854206504337
           ],
           [
-            80.20488990734711,
-            13.085354661985
+            80.2050608113999,
+            13.0854206504337
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B010",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B010",
+        "connected_building": "B010",
+        "from_node": "NODE-W-MAIN-B010",
+        "to_node": "BUILDING-B010-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0855442498476
           ],
           [
-            80.2047343964093,
-            13.085366751001299
+            80.2050643830938,
+            13.0855442498476
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B010",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B010",
+        "connected_building": "B010",
+        "from_node": "NODE-S-MAIN-B010",
+        "to_node": "BUILDING-B010-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0855442498476
           ],
           [
-            80.20529904864165,
-            13.08537815850235
+            80.2050643830938,
+            13.0855442498476
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B011",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B011",
+        "connected_building": "B011",
+        "from_node": "NODE-W-MAIN-B011",
+        "to_node": "BUILDING-B011-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0846210596191
           ],
           [
-            80.2049226330926,
-            13.085383549849649
+            80.2053221166563,
+            13.0846210596191
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B011",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B011",
+        "connected_building": "B011",
+        "from_node": "NODE-S-MAIN-B011",
+        "to_node": "BUILDING-B011-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.084802658978216
           ],
           [
-            80.20539677859935,
-            13.0854053176652
+            80.20532914662603,
+            13.084802658978216
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B012",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B012",
+        "connected_building": "B012",
+        "from_node": "NODE-W-MAIN-B012",
+        "to_node": "BUILDING-B012-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0855505851612
           ],
           [
-            80.2050849739681,
-            13.08556417185245
+            80.2048861118539,
+            13.0855505851612
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B012",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B012",
+        "connected_building": "B012",
+        "from_node": "NODE-S-MAIN-B012",
+        "to_node": "BUILDING-B012-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0855505851612
           ],
           [
-            80.20522372795165,
-            13.08556987636235
+            80.2048861118539,
+            13.0855505851612
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B013",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B013",
+        "connected_building": "B013",
+        "from_node": "NODE-W-MAIN-B013",
+        "to_node": "BUILDING-B013-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0846796498451
           ],
           [
-            80.2049456503077,
-            13.0855732230723
+            80.2045966830629,
+            13.0846796498451
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B013",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B013",
+        "connected_building": "B013",
+        "from_node": "NODE-S-MAIN-B013",
+        "to_node": "BUILDING-B013-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0846796498451
           ],
           [
-            80.20482622416515,
-            13.085579270409001
+            80.2045966830629,
+            13.0846796498451
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B014",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B014",
+        "connected_building": "B014",
+        "from_node": "NODE-W-MAIN-B014",
+        "to_node": "BUILDING-B014-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.084364149825
           ],
           [
-            80.20465818831015,
-            13.08558769618155
+            80.2049345830432,
+            13.084364149825
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B014",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B014",
+        "connected_building": "B014",
+        "from_node": "NODE-S-MAIN-B014",
+        "to_node": "BUILDING-B014-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.084364149825
           ],
           [
-            80.2045533831079,
-            13.08560009986745
+            80.2049345830432,
+            13.084364149825
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B015",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B015",
+        "connected_building": "B015",
+        "from_node": "NODE-W-MAIN-B015",
+        "to_node": "BUILDING-B015-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0854087526738
+          ],
+          [
+            80.2053337236098,
+            13.0854087526738
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B015",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B015",
+        "connected_building": "B015",
+        "from_node": "NODE-S-MAIN-B015",
+        "to_node": "BUILDING-B015-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0854087526738
+          ],
+          [
+            80.2053337236098,
+            13.0854087526738
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B016",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B016",
+        "connected_building": "B016",
+        "from_node": "NODE-W-MAIN-B016",
+        "to_node": "BUILDING-B016-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.084511072037646
+          ],
+          [
+            80.20522914662604,
+            13.084511072037646
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B016",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B016",
+        "connected_building": "B016",
+        "from_node": "NODE-S-MAIN-B016",
+        "to_node": "BUILDING-B016-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0843357498133
+          ],
+          [
+            80.205293483037,
+            13.0843357498133
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B017",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B017",
+        "connected_building": "B017",
+        "from_node": "NODE-W-MAIN-B017",
+        "to_node": "BUILDING-B017-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0849977885887
+          ],
+          [
+            80.204445920583,
+            13.0849977885887
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B017",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B017",
+        "connected_building": "B017",
+        "from_node": "NODE-S-MAIN-B017",
+        "to_node": "BUILDING-B017-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0849977885887
+          ],
+          [
+            80.204445920583,
+            13.0849977885887
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B018",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B018",
+        "connected_building": "B018",
+        "from_node": "NODE-W-MAIN-B018",
+        "to_node": "BUILDING-B018-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0857379632335
+          ],
+          [
+            80.205099875997,
+            13.0857379632335
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B018",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B018",
+        "connected_building": "B018",
+        "from_node": "NODE-S-MAIN-B018",
+        "to_node": "BUILDING-B018-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0857379632335
+          ],
+          [
+            80.205099875997,
+            13.0857379632335
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B019",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B019",
+        "connected_building": "B019",
+        "from_node": "NODE-W-MAIN-B019",
+        "to_node": "BUILDING-B019-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0857272699241
+          ],
+          [
+            80.2052141757921,
+            13.0857272699241
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B019",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B019",
+        "connected_building": "B019",
+        "from_node": "NODE-S-MAIN-B019",
+        "to_node": "BUILDING-B019-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0857272699241
+          ],
+          [
+            80.2052141757921,
+            13.0857272699241
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B020",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B020",
+        "connected_building": "B020",
+        "from_node": "NODE-W-MAIN-B020",
+        "to_node": "BUILDING-B020-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0857451157484
+          ],
+          [
+            80.2049586246768,
+            13.0857451157484
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B020",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B020",
+        "connected_building": "B020",
+        "from_node": "NODE-S-MAIN-B020",
+        "to_node": "BUILDING-B020-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0857451157484
+          ],
+          [
+            80.2049586246768,
+            13.0857451157484
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B021",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B021",
+        "connected_building": "B021",
+        "from_node": "NODE-W-MAIN-B021",
+        "to_node": "BUILDING-B021-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0855433459956
+          ],
+          [
+            80.2054253461883,
+            13.0855433459956
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B021",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B021",
+        "connected_building": "B021",
+        "from_node": "NODE-S-MAIN-B021",
+        "to_node": "BUILDING-B021-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0855433459956
+          ],
+          [
+            80.2054253461883,
+            13.0855433459956
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B022",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B022",
+        "connected_building": "B022",
+        "from_node": "NODE-W-MAIN-B022",
+        "to_node": "BUILDING-B022-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0845045498115
+          ],
+          [
+            80.2053411830421,
+            13.0845045498115
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B022",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B022",
+        "connected_building": "B022",
+        "from_node": "NODE-S-MAIN-B022",
+        "to_node": "BUILDING-B022-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0845045498115
+          ],
+          [
+            80.2053411830421,
+            13.0845045498115
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B023",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B023",
+        "connected_building": "B023",
+        "from_node": "NODE-W-MAIN-B023",
+        "to_node": "BUILDING-B023-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.084680590027
+          ],
+          [
+            80.2043884296392,
+            13.084680590027
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B023",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B023",
+        "connected_building": "B023",
+        "from_node": "NODE-S-MAIN-B023",
+        "to_node": "BUILDING-B023-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.084680590027
+          ],
+          [
+            80.2043884296392,
+            13.084680590027
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B024",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B024",
+        "connected_building": "B024",
+        "from_node": "NODE-W-MAIN-B024",
+        "to_node": "BUILDING-B024-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0857531848535
+          ],
+          [
+            80.2047992702416,
+            13.0857531848535
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B024",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B024",
+        "connected_building": "B024",
+        "from_node": "NODE-S-MAIN-B024",
+        "to_node": "BUILDING-B024-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0857531848535
+          ],
+          [
+            80.2047992702416,
+            13.0857531848535
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B025",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B025",
+        "connected_building": "B025",
+        "from_node": "NODE-W-MAIN-B025",
+        "to_node": "BUILDING-B025-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0856066178215
+          ],
+          [
+            80.2052433840977,
+            13.0856066178215
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B025",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B025",
+        "connected_building": "B025",
+        "from_node": "NODE-S-MAIN-B025",
+        "to_node": "BUILDING-B025-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.085736010015696
+          ],
+          [
+            80.20532914662603,
+            13.085736010015696
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B026",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B026",
+        "connected_building": "B026",
+        "from_node": "NODE-W-MAIN-B026",
+        "to_node": "BUILDING-B026-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0848324498142
+          ],
+          [
+            80.2056028830545,
+            13.0848324498142
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B026",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B026",
+        "connected_building": "B026",
+        "from_node": "NODE-S-MAIN-B026",
+        "to_node": "BUILDING-B026-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0848324498142
+          ],
+          [
+            80.2056028830545,
+            13.0848324498142
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B027",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B027",
+        "connected_building": "B027",
+        "from_node": "NODE-W-MAIN-B027",
+        "to_node": "BUILDING-B027-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.085281721882
+          ],
+          [
+            80.2055961280649,
+            13.085281721882
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B027",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B027",
+        "connected_building": "B027",
+        "from_node": "NODE-S-MAIN-B027",
+        "to_node": "BUILDING-B027-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.085281721882
+          ],
+          [
+            80.2055961280649,
+            13.085281721882
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B028",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B028",
+        "connected_building": "B028",
+        "from_node": "NODE-W-MAIN-B028",
+        "to_node": "BUILDING-B028-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0845295092695
+          ],
+          [
+            80.204555308995,
+            13.0845295092695
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B028",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B028",
+        "connected_building": "B028",
+        "from_node": "NODE-S-MAIN-B028",
+        "to_node": "BUILDING-B028-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0845295092695
+          ],
+          [
+            80.204555308995,
+            13.0845295092695
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B029",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B029",
+        "connected_building": "B029",
+        "from_node": "NODE-W-MAIN-B029",
+        "to_node": "BUILDING-B029-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0857454498657
+          ],
+          [
+            80.2046882831087,
+            13.0857454498657
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B029",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B029",
+        "connected_building": "B029",
+        "from_node": "NODE-S-MAIN-B029",
+        "to_node": "BUILDING-B029-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0857454498657
+          ],
+          [
+            80.2046882831087,
+            13.0857454498657
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "WATER-SVC-B030",
+        "utility_type": "WATER",
+        "utility_class": "SERVICE",
+        "building_id": "B030",
+        "connected_building": "B030",
+        "from_node": "NODE-W-MAIN-B030",
+        "to_node": "BUILDING-B030-CONN-W",
+        "depth_min": -2.5,
+        "depth_max": -1.5,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20522914662604,
+            13.0846053477117
+          ],
+          [
+            80.205661575478,
+            13.0846053477117
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "utility_id": "SEWER-SVC-B030",
+        "utility_type": "SEWER",
+        "utility_class": "SERVICE",
+        "building_id": "B030",
+        "connected_building": "B030",
+        "from_node": "NODE-S-MAIN-B030",
+        "to_node": "BUILDING-B030-CONN-S",
+        "depth_min": -2.0,
+        "depth_max": -1.0,
+        "status": "DEMO / SYNTHETIC"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.20532914662603,
+            13.0846053477117
+          ],
+          [
+            80.205661575478,
+            13.0846053477117
           ]
         ]
       }

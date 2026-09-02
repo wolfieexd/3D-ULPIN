@@ -19,10 +19,7 @@ def parse_wkt_polygon(wkt_str):
         coords = []
         for p in points_str:
             lon, lat = p.strip().split(' ')
-            # Apply OSM datum shift for Chennai Open Buildings
-            lon = float(lon) - 0.00008
-            lat = float(lat) - 0.00010
-            coords.append([lon, lat])
+            coords.append([float(lon), float(lat)])
         if coords[0] != coords[-1]:
             coords.append(coords[0])
         return [coords]

@@ -1145,13 +1145,13 @@ setTimeout(() => {
                     buildingColor = Color.WHITE.withAlpha(0.90);
                     outlineColor = Color.DODGERBLUE.withAlpha(0.8);
                 } else if (isMapped) {
-                    buildingColor = Color.CORNFLOWERBLUE.withAlpha(0.5);
+                    buildingColor = showUnderground ? Color.CORNFLOWERBLUE.withAlpha(0.2) : Color.CORNFLOWERBLUE.withAlpha(0.5);
                     outlineColor = Color.CORNFLOWERBLUE.withAlpha(0.9);
                 } else if (dist < 0.002) { 
-                    buildingColor = Color.SLATEGRAY.withAlpha(0.20);
+                    buildingColor = showUnderground ? Color.SLATEGRAY.withAlpha(0.05) : Color.SLATEGRAY.withAlpha(0.20);
                     outlineColor = Color.SLATEGRAY.withAlpha(0.10);
                 } else if (dist < 0.005) { 
-                    buildingColor = Color.SLATEGRAY.withAlpha(0.10);
+                    buildingColor = showUnderground ? Color.SLATEGRAY.withAlpha(0.02) : Color.SLATEGRAY.withAlpha(0.10);
                     outlineColor = Color.SLATEGRAY.withAlpha(0.05);
                 } else { 
                     buildingColor = Color.SLATEGRAY.withAlpha(0.05);
