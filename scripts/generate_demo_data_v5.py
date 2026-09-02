@@ -66,9 +66,10 @@ except Exception as e:
     print(e)
     pass
 
-# Sort by area descending to capture the primary solid structures (matches OSM blocks)
-real_buildings.sort(key=lambda x: x['area'], reverse=True)
-demo_buildings_raw = real_buildings[:300]
+# FIX: Filter for exact residential plot sizes (120 to 400 sqm) to eliminate ML-merged blobs and tiny fragments
+filtered_buildings = [b for b in real_buildings if 120 < b['area'] < 400]
+filtered_buildings.sort(key=lambda x: x['dist'])
+demo_buildings_raw = filtered_buildings[:300]
 
 parcels = []
 buildings = []
