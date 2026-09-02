@@ -192,7 +192,8 @@ class ErrorBoundary extends React.Component<any, any> {
 
     if (this.state.hasError) {
 
-      return (
+    
+  return (
 
         <div className="p-6 flex flex-col items-center justify-center h-full text-center text-slate-500">
 
@@ -722,7 +723,8 @@ setTimeout(() => {
 
   if (loading) {
 
-    return (
+  
+  return (
 
       <div className="flex flex-col items-center justify-center h-screen w-screen bg-slate-900 text-white font-sans">
 
@@ -751,6 +753,7 @@ setTimeout(() => {
   const selFloor = activeFloor ? floors.features?.find((f: any) => f.properties.floor_id === activeFloor) : null;
 
   const selUnit = selectedUnit ? units.features?.find((u: any) => u.properties.unit_id === selectedUnit) : null;
+
 
 
 
@@ -1211,7 +1214,8 @@ setTimeout(() => {
 
 
 
-                  return (
+                
+  return (
 
                       <React.Fragment key="z-axis">
 
@@ -1311,7 +1315,8 @@ setTimeout(() => {
 
               
 
-              return (
+            
+  return (
 
                 <Entity key={`f-${i}`} onClick={() => { setActiveFloor(v.floor_id); setSelectedUnit(null); }}>
 
@@ -1427,7 +1432,8 @@ setTimeout(() => {
 
               
 
-              return (
+            
+  return (
 
                 <React.Fragment key={`u-${i}`}>
 
@@ -1505,7 +1511,8 @@ setTimeout(() => {
 
 
 
-              return (
+            
+  return (
 
                   <React.Fragment key={`util-${i}`}>
 
@@ -1543,7 +1550,8 @@ ${f.properties.z_min.toFixed(1)}m`}
 
                if (!p || p.length < 2) return null;
 
-               return (
+             
+  return (
 
                   <React.Fragment key={`conflict-${i}`}>
 
