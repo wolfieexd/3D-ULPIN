@@ -1566,11 +1566,11 @@ setTimeout(() => {
                 const isMain = props.utility_class === 'MAIN';
                 const isSelectedBldgService = props.connected_building === selectedBuildingId;
                 
-                const z1 = isMain ? (props.depth_max + props.depth_min)/2 : (isSewer ? -1.0 : -1.5);
-                const z2 = isMain ? (props.depth_max + props.depth_min)/2 : (isSewer ? -2.0 : -2.5);
+                const z1 = isMain ? (props.depth_max + props.depth_min)/2 : (isSewer ? -2.0 : -2.5);
+                const z2 = isMain ? (props.depth_max + props.depth_min)/2 : (isSewer ? -1.0 : -1.5);
                 
-                let material: any = isSewer ? Color.ORANGERED : Color.CYAN;
-                let width = isMain ? 10 : 3;
+                let material: any = isSewer ? Color.ORANGE : Color.CYAN;
+                let width = isMain ? 10 : 8; // HUGE width for debugging
                 
                 const isTraced = traceRoute !== "NONE" && (
                     (traceRoute === "WATER" && !isSewer) || 
@@ -1585,17 +1585,26 @@ setTimeout(() => {
                     });
                 }
                 
-                // Emphasize the selected building's services
-                if (!isMain && selectedBuildingId) {
-                    if (isSelectedBldgService) {
-                        width = 5;
-                        material = new PolylineGlowMaterialProperty({
-                            glowPower: 0.5,
-                            taperPower: 1.0,
-                            color: isSewer ? Color.YELLOW : Color.CYAN
-                        });
+                if (!isMain) {
+                    // DEBUG: log the services being rendered
+                    if (props.connected_building === 'B001') {
+                        console.log("SERVICE RENDER", props.utility_id, props.utility_class, props.utility_type, props.connected_building, coords.length);
+                    }
+                    if (selectedBuildingId) {
+                        if (isSelectedBldgService) {
+                            width = 8;
+                            material = new PolylineGlowMaterialProperty({
+                                glowPower: 0.6,
+                                taperPower: 1.0,
+                                color: isSewer ? Color.YELLOW : Color.CYAN
+                            });
+                        } else {
+                            material = Color.GRAY.withAlpha(0.2);
+                            width = 4;
+                        }
                     } else {
-                        material = Color.GRAY.withAlpha(0.1);
+                        // Nothing selected, show all services normally
+                        material = isSewer ? Color.YELLOW : Color.CYAN;
                     }
                 }
                 
@@ -1606,8 +1615,8 @@ setTimeout(() => {
                         dashLength: 16.0,
                         dashPattern: 255.0
                     });
-                    width += 4;
-                } else if (traceRoute !== "NONE" && !isMain) {
+                    width += 6;
+                } else if (traceRoute !== "NONE" && !isMain && !isSelectedBldgService) {
                     material = Color.GRAY.withAlpha(0.05);
                 }
                 
@@ -1626,8 +1635,13 @@ setTimeout(() => {
                             material={material}
                         />
                         {(!isMain && (isSelectedBldgService || !selectedBuildingId)) && (
+                            <Entity position={Cartesian3.fromDegrees(coords[0][0], coords[0][1], z1)}>
+                                <EllipsoidGraphics radii={new Cartesian3(1.5, 1.5, 1.5)} material={Color.YELLOW} />
+                            </Entity>
+                        )}
+                        {(!isMain && (isSelectedBldgService || !selectedBuildingId)) && (
                             <Entity position={Cartesian3.fromDegrees(coords[1][0], coords[1][1], z2)}>
-                                <EllipsoidGraphics radii={new Cartesian3(0.5, 0.5, 0.5)} material={Color.YELLOW} />
+                                <EllipsoidGraphics radii={new Cartesian3(1.5, 1.5, 1.5)} material={Color.YELLOW} />
                             </Entity>
                         )}
                     </Entity>
