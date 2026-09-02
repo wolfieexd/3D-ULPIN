@@ -219,6 +219,15 @@ class ErrorBoundary extends React.Component<any, any> {
 
 
 
+
+const UTIL_COLORS = {
+  WATER_MAIN: '#00D9FF',
+  WATER_SVC: '#3B82F6',
+  SEWER_MAIN: '#FF6B00',
+  SEWER_SVC: '#F59E0B',
+  NODE: '#FFD60A',
+  CONFLICT: '#FF2020'
+};
 export default function App() {
 
   const viewerRef = useRef<any>(null);
@@ -977,146 +986,50 @@ setTimeout(() => {
 
         <main className="flex-1 relative bg-slate-800">
       
-      {/* Underground Legend */}
+                  {/* Underground Legend */}
       {showUnderground && (
         <div className="absolute bottom-6 left-6 z-30 bg-slate-900/95 backdrop-blur border border-slate-700 shadow-2xl p-5 rounded-xl text-white min-w-[260px]">
           <h3 className="font-bold text-sm tracking-wider text-slate-400 mb-3 uppercase">Underground Network</h3>
           <div className="space-y-3 text-sm">
-            <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.8)]"></div><span>Building Connection</span></div>
-            <div className="flex items-center gap-3"><div className="w-8 h-1.5 bg-cyan-500 rounded"></div><span>Water Main</span></div>
-            <div className="flex items-center gap-3"><div className="w-8 h-0.5 bg-cyan-400 rounded"></div><span>Water Service</span></div>
-            <div className="flex items-center gap-3"><div className="w-8 h-1.5 bg-orange-600 rounded"></div><span>Sewer Main</span></div>
-            <div className="flex items-center gap-3"><div className="w-8 h-0.5 bg-orange-400 rounded"></div><span>Sewer Service</span></div>
-            <div className="flex items-center gap-3"><div className="w-3 h-3 rounded-full bg-red-600"></div><span>Spatial Conflict</span></div>
+            <div className="flex items-center gap-3"><div className="w-3 h-3 rounded-full shadow-[0_0_8px_rgba(255,214,10,0.8)]" style={{backgroundColor: UTIL_COLORS.NODE}}></div><span>Building Connection</span></div>
+            <div className="flex items-center gap-3"><div className="w-8 h-1.5 rounded shadow-[0_0_8px_rgba(0,217,255,0.8)]" style={{backgroundColor: UTIL_COLORS.WATER_MAIN}}></div><span>Water Main</span></div>
+            <div className="flex items-center gap-3"><div className="w-8 h-0.5 rounded" style={{backgroundColor: UTIL_COLORS.WATER_SVC}}></div><span>Water Service</span></div>
+            <div className="flex items-center gap-3"><div className="w-8 h-1.5 rounded shadow-[0_0_8px_rgba(255,107,0,0.8)]" style={{backgroundColor: UTIL_COLORS.SEWER_MAIN}}></div><span>Sewer Main</span></div>
+            <div className="flex items-center gap-3"><div className="w-8 h-0.5 rounded" style={{backgroundColor: UTIL_COLORS.SEWER_SVC}}></div><span>Sewer Service</span></div>
+            <div className="flex items-center gap-3"><div className="w-4 h-4 rounded-full shadow-[0_0_8px_rgba(255,32,32,0.8)]" style={{backgroundColor: UTIL_COLORS.CONFLICT}}></div><span>Spatial Conflict</span></div>
           </div>
           <div className="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-500 font-mono">
             DATA<br/>DEMO / SYNTHETIC
           </div>
         </div>
       )}
-{/* Utility Inspector */}
+
+
+            {/* Utility Inspector */}
       {selectedFeature && selectedFeature.properties && selectedFeature.properties.utility_id && (
         <div className="absolute right-[400px] top-24 z-30 bg-slate-900/95 backdrop-blur border border-slate-700 shadow-2xl rounded-xl w-80 text-white flex flex-col max-h-[80vh] overflow-hidden">
           <div className="bg-slate-800/80 px-5 py-4 border-b border-slate-700 flex justify-between items-center">
             <h2 className="font-bold text-lg flex items-center gap-2">
-              <Database size={20} className={selectedFeature.properties.utility_type === 'SEWER' ? 'text-orange-400' : 'text-blue-400'} />
+              <Database size={20} style={{color: selectedFeature.properties.utility_type === 'SEWER' ? UTIL_COLORS.SEWER_MAIN : UTIL_COLORS.WATER_MAIN}} />
               {selectedFeature.properties.utility_type} {selectedFeature.properties.utility_class}
             </h2>
             <button onClick={() => setSelectedFeature(null)} className="text-slate-400 hover:text-white p-1">X</button>
           </div>
           <div className="p-5 flex-1 overflow-y-auto space-y-4 text-sm">
-             <div><div className="text-slate-400 mb-1">ID</div><div className="font-medium font-mono text-slate-200">{selectedFeature.properties.utility_id}</div></div>
-             <div><div className="text-slate-400 mb-1">Depth</div><div className="font-medium text-slate-200">{selectedFeature.properties.depth_min}m to {selectedFeature.properties.depth_max}m</div></div>
-             {selectedFeature.properties.connected_building && <div><div className="text-slate-400 mb-1">Connected Building</div><div className="font-medium text-slate-200">{selectedFeature.properties.connected_building}</div></div>}
-             <div className="pt-4 border-t border-slate-800 text-xs text-slate-500 font-mono">DATA<br/>DEMO / SYNTHETIC</div>
+             <div><div className="text-slate-400 mb-1">UTILITY ID</div><div className="font-medium font-mono text-slate-200">{selectedFeature.properties.utility_id}</div></div>
+             <div><div className="text-slate-400 mb-1">TYPE</div><div className="font-medium text-slate-200">{selectedFeature.properties.utility_type} {selectedFeature.properties.utility_class}</div></div>
+             {selectedFeature.properties.connected_building && <div><div className="text-slate-400 mb-1">CONNECTED BUILDING</div><div className="font-medium text-slate-200">{selectedFeature.properties.connected_building}</div></div>}
+             <div><div className="text-slate-400 mb-1">DEPTH</div><div className="font-medium text-slate-200">{selectedFeature.properties.depth_min}m → {selectedFeature.properties.depth_max}m</div></div>
+             <div><div className="text-slate-400 mb-1">ROUTE</div><div className="font-medium text-slate-200">{selectedFeature.properties.connected_building ? `${selectedFeature.properties.connected_building} → ${selectedFeature.properties.utility_type} MAIN` : `${selectedFeature.properties.utility_type} MAIN`}</div></div>
+             <div className="pt-4 border-t border-slate-800 text-xs text-slate-500 font-mono flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full" style={{backgroundColor: selectedFeature.properties.utility_type === 'SEWER' ? UTIL_COLORS.SEWER_MAIN : UTIL_COLORS.WATER_MAIN}}></div>
+                DATA: DEMO / SYNTHETIC
+             </div>
           </div>
         </div>
       )}
 
 
-          
-
-          {demoStep > 0 && (
-
-            <div className={`absolute z-30 bg-white/95 backdrop-blur border border-slate-200 shadow-2xl p-6 rounded-xl transition-all ${demoStep >= 14 ? "top-6 left-6 min-w-[400px]" : "top-6 left-1/2 transform -translate-x-1/2 min-w-[550px]"}`}>
-
-              <div className="flex justify-between items-center mb-2">
-
-                <div className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">SIH Demo Sequence</div>
-
-                <div className="text-xs font-mono bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">Step {demoStep} of 15</div>
-
-              </div>
-
-              <div className="font-bold text-lg text-slate-800 mb-4 h-16 flex items-center">
-
-                {demoStep === 1 && "Start with the real Chennai urban context. 300 actual buildings."}
-
-                {demoStep === 2 && "Zoom in on the demonstration area."}
-
-                {demoStep === 3 && "Highlight the real building footprint."}
-
-                {demoStep === 4 && "Explain that this footprint geometry is REAL / OPEN DATA."}
-
-                {demoStep === 5 && "Show the synthetic cadastral parcel P000001."}
-
-                {demoStep === 6 && "Assign Demo ULPIN: DEMO-TN-CHN-000001."}
-
-                {demoStep === 7 && "One cadastral parcel can contain a vertically structured property."}
-
-                {demoStep === 8 && "Extrude the real footprint into a synthetic 3D vertical model."}
-
-                {demoStep === 9 && "Separate the model into floors (F01 - F04)."}
-
-                {demoStep === 10 && "Show the 4 subdivided units inside each floor."}
-
-                {demoStep === 11 && "Hierarchical Selection: F03-U02."}
-
-                {demoStep === 12 && "Display Unique Identifier: 3D-CHN-P000001-B001-F03-U02."}
-
-                {demoStep === 13 && "Show its explicit Z-range and calculated volume."}
-
-                {demoStep === 14 && "Reveal underground utilities and demonstrate an intentional 3D spatial conflict."}
-
-                {demoStep === 15 && "Review Validation: 3D SPATIAL CONFLICT DETECTED. WATER â†” SEWER overlap at -2.0m to -1.5m."}
-
-              </div>
-
-              <div className="flex justify-between items-center border-t border-slate-100 pt-4">
-
-                <button onClick={() => runDemoStep(demoStep - 1)} disabled={demoStep === 1} className="text-xs px-4 py-2 text-slate-500 hover:text-slate-800 font-semibold transition disabled:opacity-30">Previous</button>
-
-                <button onClick={() => setDemoStep(0)} className="text-xs px-4 py-2 text-red-500 hover:text-red-700 font-bold transition">Exit Demo</button>
-
-                <button onClick={() => runDemoStep(demoStep === 15 ? 0 : demoStep + 1)} className="text-xs px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold shadow-md transition">{demoStep === 15 ? 'Finish' : 'Next →'}</button>
-
-              </div>
-
-            </div>
-
-          )}
-
-
-
-          {demoStep === 4 && (
-
-            <div className="absolute top-1/2 left-8 transform -translate-y-1/2 z-30 bg-slate-900/95 backdrop-blur border border-slate-700 shadow-2xl p-5 rounded-xl text-white min-w-[260px]">
-
-               <div className="text-[10px] text-emerald-400 font-mono mb-0.5">REAL / OPEN DATA</div>
-
-               <div className="font-bold text-sm tracking-wide text-slate-200">BUILDING GEOMETRY</div>
-
-               <div className="text-xs text-slate-400 mt-2">Source: Google Open Buildings</div>
-
-            </div>
-
-          )}
-
-
-
-          {(demoStep === 12 || demoStep === 13) && (
-
-            <div className="absolute top-1/2 left-8 transform -translate-y-1/2 z-30 bg-slate-900/95 backdrop-blur border border-slate-700 shadow-2xl p-5 rounded-xl text-white min-w-[260px]">
-
-               <div className="text-[10px] text-amber-400 font-mono mb-1">3D PROPERTY IDENTIFIER</div>
-
-               <div className="font-bold text-sm tracking-wide text-white mb-4 bg-slate-800 px-3 py-2 rounded">3D-CHN-P000001-B001-F03-U02</div>
-
-               
-
-               <div className="grid grid-cols-2 gap-4 text-xs">
-
-                 <div><span className="text-slate-400 block mb-1">Z-MIN</span><span className="font-mono">6.4m</span></div>
-
-                 <div><span className="text-slate-400 block mb-1">Z-MAX</span><span className="font-mono">9.6m</span></div>
-
-                   <div className="col-span-2"><span className="text-slate-400 block mb-1">CALCULATED VOLUME</span><span className="font-mono text-emerald-400">240.0 m³</span></div>
-
-               </div>
-
-            </div>
-
-          )}
 
 
 
@@ -1566,11 +1479,15 @@ setTimeout(() => {
                 const isMain = props.utility_class === 'MAIN';
                 const isSelectedBldgService = props.connected_building === selectedBuildingId;
                 
+                const hexColor = isSewer ? (isMain ? UTIL_COLORS.SEWER_MAIN : UTIL_COLORS.SEWER_SVC) : (isMain ? UTIL_COLORS.WATER_MAIN : UTIL_COLORS.WATER_SVC);
+                const cColor = Color.fromCssColorString(hexColor);
+                const nodeColor = Color.fromCssColorString(UTIL_COLORS.NODE);
+                
                 const z1 = isMain ? (props.depth_max + props.depth_min)/2 : (isSewer ? -2.0 : -2.5);
                 const z2 = isMain ? (props.depth_max + props.depth_min)/2 : (isSewer ? -1.0 : -1.5);
                 
-                let material: any = isSewer ? Color.ORANGE : Color.CYAN;
-                let width = isMain ? 10 : 8; // HUGE width for debugging
+                let material: any;
+                let width = isMain ? 10 : 5;
                 
                 const isTraced = traceRoute !== "NONE" && (
                     (traceRoute === "WATER" && !isSewer) || 
@@ -1581,43 +1498,36 @@ setTimeout(() => {
                     material = new PolylineGlowMaterialProperty({
                         glowPower: 0.3,
                         taperPower: 1.0,
-                        color: isSewer ? Color.ORANGERED : Color.CYAN
+                        color: cColor
                     });
-                }
-                
-                if (!isMain) {
-                    // DEBUG: log the services being rendered
-                    if (props.connected_building === 'B001') {
-                        console.log("SERVICE RENDER", props.utility_id, props.utility_class, props.utility_type, props.connected_building, coords.length);
-                    }
+                } else {
                     if (selectedBuildingId) {
                         if (isSelectedBldgService) {
-                            width = 8;
+                            width = 6;
                             material = new PolylineGlowMaterialProperty({
-                                glowPower: 0.6,
+                                glowPower: 0.4,
                                 taperPower: 1.0,
-                                color: isSewer ? Color.YELLOW : Color.CYAN
+                                color: cColor
                             });
                         } else {
-                            material = Color.GRAY.withAlpha(0.2);
-                            width = 4;
+                            material = cColor.withAlpha(0.25);
+                            width = 3;
                         }
                     } else {
-                        // Nothing selected, show all services normally
-                        material = isSewer ? Color.YELLOW : Color.CYAN;
+                        material = cColor;
                     }
                 }
                 
                 if (isTraced && isSelectedBldgService) {
                     material = new PolylineDashMaterialProperty({
-                        color: Color.YELLOW,
+                        color: nodeColor,
                         gapColor: Color.TRANSPARENT,
                         dashLength: 16.0,
                         dashPattern: 255.0
                     });
                     width += 6;
                 } else if (traceRoute !== "NONE" && !isMain && !isSelectedBldgService) {
-                    material = Color.GRAY.withAlpha(0.05);
+                    material = cColor.withAlpha(0.05);
                 }
                 
                 return (
@@ -1636,12 +1546,12 @@ setTimeout(() => {
                         />
                         {(!isMain && (isSelectedBldgService || !selectedBuildingId)) && (
                             <Entity position={Cartesian3.fromDegrees(coords[0][0], coords[0][1], z1)}>
-                                <EllipsoidGraphics radii={new Cartesian3(1.5, 1.5, 1.5)} material={Color.YELLOW} />
+                                <EllipsoidGraphics radii={new Cartesian3(1.2, 1.2, 1.2)} material={nodeColor} />
                             </Entity>
                         )}
                         {(!isMain && (isSelectedBldgService || !selectedBuildingId)) && (
                             <Entity position={Cartesian3.fromDegrees(coords[1][0], coords[1][1], z2)}>
-                                <EllipsoidGraphics radii={new Cartesian3(1.5, 1.5, 1.5)} material={Color.YELLOW} />
+                                <EllipsoidGraphics radii={new Cartesian3(1.2, 1.2, 1.2)} material={nodeColor} />
                             </Entity>
                         )}
                     </Entity>
