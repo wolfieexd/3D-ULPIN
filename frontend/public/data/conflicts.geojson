@@ -5,8 +5,8 @@
       "type": "Feature",
       "properties": {
         "conflict_id": "CONF-001",
-        "utility_1": "UTIL-WATER-001",
-        "utility_2": "UTIL-SEWER-001",
+        "utility_1": "UTIL-WATER-MAIN",
+        "utility_2": "UTIL-SEWER-MAIN",
         "z_overlap_min": -2.0,
         "z_overlap_max": -1.5,
         "description": "WATER <-> SEWER SPATIAL OVERLAP",
